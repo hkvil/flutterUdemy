@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1018631504891",
+    "project_id": "flash-chat-new-80404",
+    "storage_bucket": "flash-chat-new-80404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018631504891:android:486f0aa77019cc49c0415e",
+        "android_client_info": {
+          "package_name": "com.hidayat2021.flash_chat_new"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018631504891-j5vecb4g13ji47aro3p1q4n0q01oipg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQgxAL2ARnOcy1jmKHZ2PvzqRETchv5Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018631504891-j5vecb4g13ji47aro3p1q4n0q01oipg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
