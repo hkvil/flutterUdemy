@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task.dart';
+import 'package:todoey/models/task_provider.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen(this.callback);
   String? text;
-  final callback;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class AddTaskScreen extends StatelessWidget {
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () {
-                    callback(text);
+                    Provider.of<TaskProvider>(context,listen: false).addTask(text!);
                     Navigator.pop(context);
                   },
                   child: Text('Add'),

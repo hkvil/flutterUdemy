@@ -3,31 +3,10 @@ import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/task_tile.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_provider.dart';
 
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-
-  List<Task> tasks = [
-    Task(name: 'Learn Flutter'),
-    Task(name: 'Go to school'),
-    Task(name: 'Task nomber 3')
-  ];
-  changeCheckboxCallback(index) {
-    setState(() {
-      tasks[index].tooglesCheckbox();
-    });
-  }
-  addNewTask(String titile){
-    setState(() {
-      tasks.add(Task(name: titile));
-    });
-  }
+class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +38,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
               ),
               Text(
-                '${tasks.length} Tasks',
+                '${Provider.of<TaskProvider>(context).tasks.length} Tasks',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -71,7 +50,7 @@ class _TasksScreenState extends State<TasksScreen> {
         Expanded(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: TasksList(tasksInTasksList: tasks,callback: changeCheckboxCallback,),
+            child: TasksList(),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -84,7 +63,7 @@ class _TasksScreenState extends State<TasksScreen> {
         onPressed: () {
           showModalBottomSheet(context: context, builder:(context) => SingleChildScrollView(child: Container
             (padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTaskScreen(addNewTask))),isScrollControlled: true);
+              child: AddTaskScreen())),isScrollControlled: true);
         },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
