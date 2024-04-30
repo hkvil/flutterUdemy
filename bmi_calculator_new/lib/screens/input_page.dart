@@ -1,4 +1,5 @@
 import 'package:bmi_calculator_new/calculator.dart';
+import 'package:bmi_calculator_new/screens/about_page.dart';
 import 'package:bmi_calculator_new/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,10 +8,14 @@ import '../components/icon_content.dart';
 import '../constants.dart';
 import '../components/reusable_round_button.dart';
 import '../components/bottom_button.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart'; // For Iconify Widget
+import 'package:iconify_flutter_plus/icons/zondicons.dart'; // for Non Colorful Icons
 
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
+  const InputPage({super.key});
+
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -29,9 +34,26 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('BMI CALCULATOR'),
+          title: const Text('BMI CALCULATOR'),
         ),
         body: Column(children: [
+          ReusableCard(
+            color: kInActiveCardColor,
+            cardChild: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("WHAT IS BMI Calculator ?"),
+                Iconify(
+                  kInputPageQuestionIconSVG,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            onPres: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutPage()));
+            },
+          ),
           Expanded(
             child: Row(
               children: [
@@ -45,7 +67,7 @@ class _InputPageState extends State<InputPage> {
                       color: selectedGender == Gender.male
                           ? kActivateCardColor
                           : kInActiveCardColor,
-                      cardChild: IconContent(
+                      cardChild: const IconContent(
                         faicon: FontAwesomeIcons.mars,
                         bottomText: 'MALE',
                       )),
@@ -60,7 +82,7 @@ class _InputPageState extends State<InputPage> {
                     color: selectedGender == Gender.female
                         ? kActivateCardColor
                         : kInActiveCardColor,
-                    cardChild: IconContent(
+                    cardChild: const IconContent(
                       faicon: FontAwesomeIcons.venus,
                       bottomText: 'FEMALE',
                     ),
@@ -76,7 +98,7 @@ class _InputPageState extends State<InputPage> {
             cardChild: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'HEIGHT',
                   style: kLabelStyle,
                 ),
@@ -89,7 +111,7 @@ class _InputPageState extends State<InputPage> {
                       height.toString(),
                       style: kNumberTextStyle,
                     ),
-                    Text(
+                    const Text(
                       'cm',
                       style: kLabelStyle,
                     ),
@@ -101,10 +123,10 @@ class _InputPageState extends State<InputPage> {
                         activeTrackColor: Colors.white,
                         thumbColor: kActiveSliderColor,
                         thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 15),
+                            const RoundSliderThumbShape(enabledThumbRadius: 15),
                         overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 30),
-                        overlayColor: Color(0x30EB1555),
+                            const RoundSliderOverlayShape(overlayRadius: 30),
+                        overlayColor: const Color(0x30EB1555),
                         inactiveTrackColor: kInactiveSliderColor),
                     child: Slider(
                         min: kMinSliderHeight.toDouble(),
@@ -128,7 +150,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "WEIGHT",
                           style: kLabelStyle,
                         ),
@@ -146,7 +168,7 @@ class _InputPageState extends State<InputPage> {
                                     weight--;
                                   });
                                 }),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             RoundIconButton(
@@ -171,7 +193,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "AGE",
                           style: kLabelStyle,
                         ),
@@ -190,7 +212,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             RoundIconButton(
@@ -211,12 +233,18 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButtonBar(
-              onPres: (){
+              onPres: () {
                 Calculate res = Calculate(height: height, weight: weight);
-                Navigator.push(context,MaterialPageRoute(builder: (context)=>ResultPage(bmi: res.calculateBMI(),interp: res.getInterpretation(),category: res.getResult(),)));
-                },
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ResultPage(
+                              bmi: res.calculateBMI(),
+                              interp: res.getInterpretation(),
+                              category: res.getResult(),
+                            )));
+              },
               text: 'CALCULATE')
         ]));
   }
 }
-

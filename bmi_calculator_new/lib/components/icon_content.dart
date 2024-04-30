@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
 
 class IconContent extends StatelessWidget {
-  IconContent({required IconData this.faicon,required String this.bottomText});
+  const IconContent({super.key, required this.faicon,required this.bottomText});
 
   final IconData faicon;
   final String bottomText;
@@ -17,7 +17,7 @@ class IconContent extends StatelessWidget {
           faicon,
           size: 100,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Text(

@@ -4,7 +4,7 @@ import '../constants.dart';
 import '../components/bottom_button.dart';
 
 class ResultPage extends StatelessWidget {
-  ResultPage({required this.bmi,required this.interp,required this.category});
+  ResultPage({super.key, required this.bmi,required this.interp,required this.category});
 
   String bmi;
   String interp;
@@ -14,13 +14,13 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Result'),
+        title: const Text('Result'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          const Expanded(
             flex: 1,
             child: Center(
               child: Text(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class BottomButtonBar extends StatelessWidget {
-  BottomButtonBar({required this.onPres,required this.text});
+  const BottomButtonBar({super.key, required this.onPres,required this.text});
 
   final VoidCallback? onPres;
   final String? text;
@@ -14,7 +14,7 @@ class BottomButtonBar extends StatelessWidget {
         color: kBottomBarColor,
         width: double.infinity,
         height: kBottomBarHeight,
-        margin: EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 10),
         child: Center(
           child: Text('$text',style: kBottomBar,),
         ),
